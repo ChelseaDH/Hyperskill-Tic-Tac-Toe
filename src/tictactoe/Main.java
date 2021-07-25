@@ -28,6 +28,15 @@ public class Main {
         Player player2 = Player.NewForType(commands[2], 'O', s);
         Player currentPlayer = player1;
 
+        // Set opponents
+        if (player1 instanceof AIPlayer) {
+            ((AIPlayer) player1).opponent = player2;
+        }
+
+        if (player2 instanceof AIPlayer) {
+            ((AIPlayer) player2).opponent = player1;
+        }
+
         // Print initial board
         board.printBoard();
 

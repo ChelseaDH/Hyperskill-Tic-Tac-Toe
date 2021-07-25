@@ -4,6 +4,7 @@ import java.util.Random;
 
 public abstract class AIPlayer extends Player {
     protected Difficulty difficulty;
+    protected Player opponent;
 
     AIPlayer(char symbol, Difficulty difficulty) {
         super(symbol);
@@ -12,7 +13,6 @@ public abstract class AIPlayer extends Player {
 
     @Override
     public void makeMove(Board board) {
-        // Print out move making
         System.out.printf("Making move level \"%s\"\n", this.difficulty.name().toLowerCase());
 
         this.makeAIMove(board);
@@ -28,7 +28,6 @@ public abstract class AIPlayer extends Player {
             p.y = random.nextInt(board.boardSize);
         } while (board.isOccupied(p));
 
-        // Set the cell
         board.setCell(p, this.symbol);
     }
 }

@@ -17,6 +17,18 @@ public class Board {
         this.state = State.IN_PROGRESS;
     }
 
+    public Board makeCopy() {
+        Board copy = new Board();
+
+        copy.cells = this.cells.clone();
+        for (int i = 0; i < this.cells.length; i++) {
+            copy.cells[i] = this.cells[i].clone();
+        }
+        copy.state = this.state;
+
+        return copy;
+    }
+
     public String[] parseCommand(String s) {
         String[] commands = s.split("\\s");
 
