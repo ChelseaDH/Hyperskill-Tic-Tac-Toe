@@ -39,10 +39,13 @@ public class Main {
             board.printBoard();
 
             // Check for winners or draw
-            board.check();
-            // Print out winner if applicable
-            if (board.state == State.WINNER_FOUND) {
-                System.out.println(currentPlayer.symbol + " wins");
+            switch (board.check()) {
+                case WINNER_FOUND:
+                    System.out.println(currentPlayer.symbol + " wins");
+                    continue;
+                case DRAW:
+                    System.out.println("Draw");
+                    continue;
             }
 
             // Change player

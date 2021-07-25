@@ -6,7 +6,6 @@ import java.util.List;
 public class Board {
     int boardSize = 3;
     char[][] cells = new char[boardSize][boardSize];
-    int noXs, noOs;
     State state;
 
     public Board() {
@@ -16,8 +15,6 @@ public class Board {
             }
         }
         this.state = State.IN_PROGRESS;
-        this.noXs = 0;
-        this.noOs = 0;
     }
 
     public String[] parseCommand(String s) {
@@ -80,16 +77,6 @@ public class Board {
 
     void setCell(Point p, char symbol) {
         this.cells[p.x][p.y] = symbol;
-
-        // Add to the player count
-        switch (symbol) {
-            case 'X':
-                this.noXs++;
-                break;
-            case 'O':
-                this.noOs++;
-                break;
-        }
     }
 
     // Checks if a cell in the board is already occupied
@@ -98,7 +85,7 @@ public class Board {
     }
 
     // Check for wins in rows, columns, and diagonals
-    public void check() {
+    public State check() {
         // Check for wins in rows and columns
         for (int i = 0; i < 3; i++) {
             if ((this.cells[0][i] == this.cells[1][i] && this.cells[0][i] == this.cells[2][i] && this.cells[0][i] != ' ')
@@ -115,10 +102,11 @@ public class Board {
         }
 
         // Checks for a draw
-        if (this.state != State.WINNER_FOUND && noXs + noOs == 9) {
+        if (this.state != State.WINNER_FOUND && getEmptyCells().size() == 0) {
             this.state = State.DRAW;
-            System.out.println("Draw");
         }
+
+        return this.state;
     }
 
     // Returns the cell coordinates that will cause a win in the next turn
