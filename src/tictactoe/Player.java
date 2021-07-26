@@ -15,7 +15,7 @@ public abstract class Player {
         Player player;
 
         switch (type) {
-            case "user":
+            case "human":
                 player = new HumanPlayer(symbol, s);
                 break;
             case "easy":
@@ -31,5 +31,19 @@ public abstract class Player {
                 throw new IllegalStateException("Unexpected value: " + type);
         }
         return player;
+    }
+
+    public static boolean isValidPlayer(String player) {
+        if (player.equals("human")) {
+            return true;
+        }
+
+        for (Difficulty d: Difficulty.values()) {
+            if (player.equals(d.name().toLowerCase())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

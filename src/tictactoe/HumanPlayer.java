@@ -4,43 +4,47 @@ import java.util.Scanner;
 import java.util.Vector;
 
 public class HumanPlayer extends Player {
-    private Scanner s;
+    private final Scanner scanner;
 
-    HumanPlayer(char symbol, Scanner s) {
+    HumanPlayer(char symbol, Scanner scanner) {
         super(symbol);
-        this.s = s;
-    }
-
-    private Vector<Integer> getCoordinates() {
-        Vector<Integer> v = new Vector<>(2, 2);
-
-        while (true) {
-            // Get a coordinate string from the user
-            System.out.print("Enter the coordinates:  ");
-            String[] coordinates = s.nextLine().split("\\s");
-
-            // Parse the coordinates into integers
-            try {
-                v.add(0, Integer.parseInt(coordinates[0]));
-                v.add(1, Integer.parseInt(coordinates[1]));
-                return v;
-            } catch (NumberFormatException e) {
-                System.out.println("You should enter numbers!");
-            } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("Well done moron!");
-            }
-        }
+        this.scanner = scanner;
     }
 
     @Override
     public void makeMove(Board board) {
         Vector<Integer> coordinates = getCoordinates();
 
-        // Try to add the cell into the board
         try {
             board.addCell(coordinates.get(0), coordinates.get(1), this.symbol);
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    private Vector<Integer> getCoordinates() {
+        Vector<Integer> vector = new Vector<>(2, 2);
+
+        while (true) {
+            System.out.printf("%s: enter coordinates or type 'exit' to quit ", this.symbol);
+            String input = scanner.nextLine().trim();
+
+            if (input.equals("exit")) {
+                throw new GameExitedException();
+            }
+
+            String[] coordinates = input.split("\\s");
+
+            // Parse the coordinates into integers
+            try {
+                vector.add(0, Integer.parseInt(coordinates[0]));
+                vector.add(1, Integer.parseInt(coordinates[1]));
+                return vector;
+            } catch (NumberFormatException e) {
+                System.out.println("You should enter numbers!");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("That was not supposed to happen!");
+            }
         }
     }
 }

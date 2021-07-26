@@ -13,7 +13,7 @@ public abstract class AIPlayer extends Player {
 
     @Override
     public void makeMove(Board board) {
-        System.out.printf("Making move level \"%s\"\n", this.difficulty.name().toLowerCase());
+        System.out.printf("%s: making move at level \"%s\"\n", this.symbol, this.difficulty.name().toLowerCase());
 
         this.makeAIMove(board);
     }

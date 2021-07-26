@@ -29,43 +29,14 @@ public class Board {
         return copy;
     }
 
-    public String[] parseCommand(String s) {
-        String[] commands = s.split("\\s");
-
-        if (commands[0].equals("exit")) {
-            System.exit(0);
-        }
-
-        // Start command must be followed by 2 further commands denoting the player type
-        // If any part of the input is incorrect - throw IllegalArgumentException
-        if (commands.length == 3 && commands[0].equals("start")) {
-            for (int i = 1; i < commands.length; i++) {
-                if (!commands[i].equals("user") && !isValidDifficulty(commands[i])) {
-                    throw new IllegalArgumentException("Bad parameters!");
-                }
-            }
-            return commands;
-        } else {
-            throw new IllegalArgumentException("Bad parameters!");
-        }
-    }
-
-    // Checks if a given input matches a Difficulty option
-    private boolean isValidDifficulty(String input) {
-        for (Difficulty d: Difficulty.values()) {
-            if (input.equals(d.name().toLowerCase())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public void printBoard() {
+        System.out.println();
         System.out.println("---------");
         System.out.printf("| %c %c %c | \n", this.cells[0][2], this.cells[1][2], this.cells[2][2]);
         System.out.printf("| %c %c %c | \n", this.cells[0][1], this.cells[1][1], this.cells[2][1]);
         System.out.printf("| %c %c %c | \n", this.cells[0][0], this.cells[1][0], this.cells[2][0]);
         System.out.println("---------");
+        System.out.println();
     }
 
     // Adds a new cell into the board
