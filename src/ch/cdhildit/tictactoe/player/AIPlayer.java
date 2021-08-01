@@ -1,4 +1,8 @@
-package tictactoe;
+package ch.cdhildit.tictactoe.player;
+
+import ch.cdhildit.tictactoe.board.Point;
+import ch.cdhildit.tictactoe.board.Board;
+import ch.cdhildit.tictactoe.game.Difficulty;
 
 import java.util.Random;
 
@@ -18,14 +22,22 @@ public abstract class AIPlayer extends Player {
         this.makeAIMove(board);
     }
 
-    protected abstract void makeAIMove(Board board);
+    public Player getOpponent() {
+        return opponent;
+    }
+
+    public void setOpponent(Player opponent) {
+        this.opponent = opponent;
+    }
+
+    public abstract void makeAIMove(Board board);
 
     protected void makeRandomMove(Board board) {
         Random random = new Random(System.currentTimeMillis());
         Point p = new Point();
         do {
-            p.x = random.nextInt(board.boardSize);
-            p.y = random.nextInt(board.boardSize);
+            p.x = random.nextInt(Board.BOARD_SIZE);
+            p.y = random.nextInt(Board.BOARD_SIZE);
         } while (board.isOccupied(p));
 
         board.setCell(p, this.symbol);

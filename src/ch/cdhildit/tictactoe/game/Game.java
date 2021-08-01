@@ -1,4 +1,9 @@
-package tictactoe;
+package ch.cdhildit.tictactoe.game;
+
+import ch.cdhildit.tictactoe.board.Board;
+import ch.cdhildit.tictactoe.board.State;
+import ch.cdhildit.tictactoe.player.AIPlayer;
+import ch.cdhildit.tictactoe.player.Player;
 
 import java.util.Scanner;
 
@@ -62,11 +67,11 @@ public class Game {
 
         // Set opponents
         if (player1 instanceof AIPlayer) {
-            ((AIPlayer) player1).opponent = player2;
+            ((AIPlayer) player1).setOpponent(player2);
         }
 
         if (player2 instanceof AIPlayer) {
-            ((AIPlayer) player2).opponent = player1;
+            ((AIPlayer) player2).setOpponent(player1);
         }
 
         System.out.println("\nLets begin!");
@@ -96,7 +101,7 @@ public class Game {
             // Check for winners or draw
             switch (board.check()) {
                 case WINNER_FOUND:
-                    System.out.println(currentPlayer.symbol + " wins\n");
+                    System.out.println(currentPlayer.getSymbol() + " wins\n");
                     continue;
                 case DRAW:
                     System.out.println("Draw\n");
@@ -106,7 +111,7 @@ public class Game {
             // Change player
             currentPlayer = currentPlayer == player1 ? player2 : player1;
 
-        } while (board.state == State.IN_PROGRESS);
+        } while (board.getState() == State.IN_PROGRESS);
     }
 
     private void printTicTacToe() {

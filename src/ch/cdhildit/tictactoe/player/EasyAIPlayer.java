@@ -1,4 +1,7 @@
-package tictactoe;
+package ch.cdhildit.tictactoe.player;
+
+import ch.cdhildit.tictactoe.game.Difficulty;
+import ch.cdhildit.tictactoe.board.Board;
 
 public class EasyAIPlayer extends AIPlayer {
 
@@ -7,7 +10,7 @@ public class EasyAIPlayer extends AIPlayer {
     }
 
     @Override
-    protected void makeAIMove(Board board) {
+    public void makeAIMove(Board board) {
         makeRandomMove(board);
     }
 }

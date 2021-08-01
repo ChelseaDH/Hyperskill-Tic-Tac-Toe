@@ -1,4 +1,6 @@
-package tictactoe;
+package ch.cdhildit.tictactoe;
+
+import ch.cdhildit.tictactoe.game.Game;
 
 import java.util.Scanner;
 

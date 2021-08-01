@@ -1,6 +1,10 @@
-package tictactoe;
+package ch.cdhildit.tictactoe.player;
 
 import java.util.*;
+
+import ch.cdhildit.tictactoe.board.Point;
+import ch.cdhildit.tictactoe.board.Board;
+import ch.cdhildit.tictactoe.game.Difficulty;
 
 public class HardAIPlayer extends AIPlayer {
 
@@ -9,7 +13,7 @@ public class HardAIPlayer extends AIPlayer {
     }
 
     @Override
-    protected void makeAIMove(Board board) {
+    public void makeAIMove(Board board) {
         MinimaxMove bestMove = minimax(board, this, 1);
 
         board.setCell(bestMove.getPoint(), this.symbol);

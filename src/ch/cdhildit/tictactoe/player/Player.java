@@ -1,15 +1,22 @@
-package tictactoe;
+package ch.cdhildit.tictactoe.player;
+
+import ch.cdhildit.tictactoe.game.Difficulty;
+import ch.cdhildit.tictactoe.board.Board;
 
 import java.util.Scanner;
 
 public abstract class Player {
-    char symbol;
+    protected char symbol;
 
     Player(char symbol) {
         this.symbol = symbol;
     }
 
-    public void makeMove(Board board) {}
+    public char getSymbol() {
+        return symbol;
+    }
+
+    public abstract void makeMove(Board board);
 
     public static Player NewForType(String type, char symbol, Scanner s) {
         Player player;

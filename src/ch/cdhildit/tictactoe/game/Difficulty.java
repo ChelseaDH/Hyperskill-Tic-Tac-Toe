@@ -1,4 +1,4 @@
-package tictactoe;
+package ch.cdhildit.tictactoe.game;
 
 public enum Difficulty {
     EASY,

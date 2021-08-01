@@ -1,4 +1,4 @@
-package tictactoe;
+package ch.cdhildit.tictactoe.board;
 
 public class Point {
     public int x, y;

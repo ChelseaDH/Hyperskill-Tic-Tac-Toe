@@ -1,4 +1,7 @@
-package tictactoe;
+package ch.cdhildit.tictactoe.player;
+
+import ch.cdhildit.tictactoe.board.Board;
+import ch.cdhildit.tictactoe.game.GameExitedException;
 
 import java.util.Scanner;
 import java.util.Vector;
